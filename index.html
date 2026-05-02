@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday 💖</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: linear-gradient(to right, #ffdde1, #ee9ca7);
+    text-align: center;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+h1 {
+    color: #ff4e7a;
+}
+
+/* 🎁 Gift button */
+#giftBtn {
+    margin-top: 100px;
+    font-size: 20px;
+    padding: 15px 25px;
+    background: #ff6f91;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Hidden content */
+#mainContent {
+    display: none;
+}
+
+/* 📸 Photos */
+.gallery img {
+    width: 150px;
+    height: 150px;
+    margin: 8px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+/* 🎥 Video */
+video {
+    width: 300px;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+/* 💌 Message */
+.message {
+    background: white;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 15px;
+    display: inline-block;
+    max-width: 400px;
+    min-height: 120px;
+}
+
+/* 🎶 Button */
+.music-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #ff4e7a;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* ❤️🌸 Floating */
+.floating {
+    position: fixed;
+    bottom: -20px;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎁 GIFT BUTTON -->
+<button id="giftBtn" onclick="openGift()">🎁 Click to Open Your Surprise</button>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent">
+
+<h1>Happy Birthday Nandu ❤️</h1>
+
+<!-- 📸 PHOTOS -->
+<div class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+    <img src="photo5.jpg">
+    <img src="photo6.jpg">
+    <img src="photo7.jpg">
+</div>
+
+<!-- 🎥 VIDEO -->
+<video controls>
+    <source src="video.mp4" type="video/mp4">
+</video>
+
+<!-- 🎶 MUSIC -->
+<br>
+<button class="music-btn" onclick="playMusic()">Play Music 🎶</button>
+
+<audio id="bgMusic" loop>
+    <!-- 👉 Put your music file in folder and name it this -->
+    <source src="song.mp3" type="audio/mp3">
+</audio>
+
+<!-- 💌 MESSAGE -->
+<div class="message" id="typedText"></div>
+
+</div>
+
+<script>
+
+/* 🎁 Open gift */
+function openGift() {
+    document.getElementById("giftBtn").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+    startTyping();
+}
+
+/* ⌨️ Typing animation */
+let text = `Happy Birthday to my NANDU! 🎉
+You are one of the most special people in my life.
+Thank you for always being there for me, no matter what.
+
+No matter what you’re going through right now, remember you’re stronger than you think 💪
+You’ve already handled so many tough moments, and you’ll get through this too.
+I’m always here for you — not just today, but every single day 🤍
+
+Your friendship means more to me than words can say.
+You make my life brighter and happier every day.
+May your birthday be filled with love, laughter, and peace.
+
+Better days are coming, and I’ll be right beside you for all of them. 🌸
+Let’s keep smiling and create more beautiful memories together.
+Happy birthday, my dear cutie! 💖
+
+Love you forever 💕`;
+
+let index = 0;
+
+function startTyping() {
+    let speed = 40;
+    function type() {
+        if (index < text.length) {
+            document.getElementById("typedText").innerHTML += text.charAt(index);
+            index++;
+            setTimeout(type, speed);
+        }
+    }
+    type();
+}
+
+/* 🎶 Music (fixed) */
+function playMusic() {
+    let music = document.getElementById("bgMusic");
+    music.play().catch(() => {
+        alert("Click again to play music 🎶");
+    });
+}
+
+/* ❤️🌸 Floating */
+function createFloating() {
+    let item = document.createElement("div");
+    item.className = "floating";
+
+    let symbols = ["❤️", "🌸", "💖", "🌺"];
+    item.innerHTML = symbols[Math.floor(Math.random()*symbols.length)];
+
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.fontSize = (Math.random()*10 + 15) + "px";
+
+    document.body.appendChild(item);
+
+    setTimeout(() => item.remove(), 6000);
+}
+
+setInterval(createFloating, 300);
+
+</script>
+
+</body>
+</html>
